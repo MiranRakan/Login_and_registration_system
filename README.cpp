@@ -10,7 +10,7 @@ void Login();
 
 int main()
 {
-    // when the user open the website
+    // when the user opens the website
     cout << "Hey.." << endl;
     cout << "Welcome to our website!" << endl;
     cout << "Let's begin the journey.." << endl
@@ -20,14 +20,14 @@ int main()
 
     return 0;
 }
-void NewRegister() // This function ask the user if he is new user or have already an account
+void NewRegister() // This function asks the user if he is a new user or have already an account
 {
 
     string NewRegister, Username, Password, firstname, lastname, email;
 
     cout << "New register?  ";
 
-    cin >> NewRegister; // must be "yes" if he is new user or "no" if he is not a new user
+    cin >> NewRegister; // must be "yes" if he is a new user or "no" if he is not a new user
     cin.ignore();
     if (NewRegister == "Yes")
     {
