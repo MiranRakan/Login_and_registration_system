@@ -7,7 +7,6 @@ bool validlastname(string);
 bool validpassword(string);
 void verificationcode();
 void Login();
-
 int main()
 {
     // when the user opens the website
@@ -25,11 +24,12 @@ void NewRegister() // This function asks the user if he is a new user or have al
 
     string NewRegister, Username, Password, firstname, lastname, email;
 
-    cout << "New register?  ";
-
+    cout << "New register?  \n(Note: if you are a new user type Yes, otherwise type No) \n";
+    
     cin >> NewRegister; // must be "yes" if he is a new user or "no" if he is not a new user
     cin.ignore();
-    if (NewRegister == "Yes")
+
+    if (NewRegister == "Yes" || NewRegister == "yes" )
     {
         cout << "First name : "; // enter first name
         cin >> firstname;
@@ -42,12 +42,13 @@ void NewRegister() // This function asks the user if he is a new user or have al
              << "Valid first name." << endl
              << endl;
 
+
         cout << "Last name : "; // enter last name
-        cin >> lastname;
+        cin >>lastname ;
         while (validlastname(lastname) == false)
         {
             cout << "The last name is not valid please try again : " << endl;
-            cin >> firstname;
+            cin >> lastname;
         }
         cout << endl
              << "Valid last name." << endl
@@ -64,7 +65,7 @@ void NewRegister() // This function asks the user if he is a new user or have al
              << "Valid email address." << endl
              << endl;
 
-        cout << "Password : "; // enter password
+        cout << "Password : \n(Note: your password must be at least one digit,one special character, one uppercase letter, and one lowercase letter) \n"; // enter password
         cin >> Password;
         while (validpassword(Password) == false)
         {
@@ -75,59 +76,39 @@ void NewRegister() // This function asks the user if he is a new user or have al
              << "Valid password." << endl
              << endl;
 
-        cout << "Registration completed!" << endl;
+        cout << "Registration completed! \n" << endl;
         verificationcode();
     }
-    else if (NewRegister == "No") // have already an account
+    else if (NewRegister == "No"  ||NewRegister == "no") // have already an account
     {
-        cout << endl
-             << "     Log in       " << endl
-             << endl;
-        cout << "Enter your username :" << endl;
-        getline(cin, Username);
+		string Username, Password;
+    cout << endl    << "     Log in       " << endl<< endl;
+    cout << "Enter your username :" << endl;
+    getline(cin, Username);
 
-        cout << "Enter your password :" << endl;
-        getline(cin, Password);
+    cout << "Enter your password :" << endl;
+    cin >> Password;
 
-        cout << endl
-             << "Welcome!" << endl;
+    cout << endl
+         << "Login success!" << endl;
     }
 }
 bool validfirstname(string firstname) // function to check the validity of the first name
 {
     if (firstname[0] >= 'A' && firstname[0] <= 'Z')
-    {
-        if (firstname.find(' ') == -1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
+      return true;
+	  else
+	  return false;
 }
 bool validlastname(string lastname) // function to check the validity of the last name
 {
     if (lastname[0] >= 'A' && lastname[0] <= 'Z')
-    {
-        if (lastname.find(' ') == -1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
+      return true;
+    
+    else 
+  	 return false;
+       
+    
 }
 bool validEmail(string email) // function to check the validity of the email
 {
@@ -220,28 +201,23 @@ bool validpassword(string password) // function to check the validity of the pas
 }
 void verificationcode() // verifying account
 {
-    int arr[4];
+    int code ;
 
     cout << "We have sent a verification code to your email to confirm your account." << endl
-         << "Please check your email and enter the verification code here : " << endl;
+         << "Please check your email." << endl;
 
-    for (int i = 0; i < 4; i++)
-    {
-        cin >> arr[i];
-    }
+  
+     cout<<"Email message: Your verification code is  ";
+    srand(time(0));
 
-    for (int i = 0; i < 3; i++)
-    {
-        while (arr[i] == arr[i + 1])
-        {
-            cout << "The code is not correct, please try again :" << endl;
+	for (int i = 0; i <= 3; i++)
+	{
+		cout << rand() % 10 ;
+	}
+    cout<<"\n";
 
-            for (int i = 0; i < 4; i++)
-            {
-                cin >> arr[i];
-            }
-        }
-    }
+    cout<<"Enter the verification code here : \n";
+	cin>>code;
 
     cout << "Your account has been verified." << endl;
     Login();
@@ -249,6 +225,7 @@ void verificationcode() // verifying account
 void Login()
 {
     string Username, Password;
+
     cin.ignore();
     cout << endl    << "     Log in       " << endl<< endl;
     cout << "Enter your username :" << endl;
@@ -258,5 +235,5 @@ void Login()
     cin >> Password;
 
     cout << endl
-         << "Welcome!" << endl;
+         << "Login success!" << endl;
 }
